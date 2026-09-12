@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GSB 5544 — PA 3.2: Distances Between Observations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/clipboard/clipboard.min.js"></script>
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/popper.min.js"></script>
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/anchor.min.js"></script>
+<link href="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="GSB5544_PA_3_2_Distances_Between_Observations_empty_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GSB 5544 — PA 3.2: Distances Between Observations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Read this notebook from top to bottom and fill in the code as you go. Work together and discuss with other students in the class. Try to resolve any errors on your own first, but don’t get stuck; ask for help!</p>
+<p>In addition to writing and running code, be sure to examine any output and interpret the results before moving on.</p>
+<p>For many of these questions, there are several approaches, and there is no single right answer. You should try a few different things and compare with your classmates.</p>
+<p>We will use <code>scikit-learn</code> extensively later, but for this activity you might want to stick with <code>pandas</code>.</p>
+<div id="cell-002" class="cell" data-execution_count="73">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="ames---recommending-similar-homes" class="level2">
+<h2 class="anchored" data-anchor-id="ames---recommending-similar-homes">Ames - Recommending Similar Homes</h2>
+<p>The Ames data set (2,930 home sales in Ames, Iowa; tab-separated) is at the URL below. House 0 is the first row. The variables we need for part 1: <code>Gr Liv Area</code> (above-ground living area, sq ft), <code>Bedroom AbvGr</code>, <code>Full Bath</code>, <code>Half Bath</code>, and <code>SalePrice</code>; part 2 adds <code>House Style</code>.</p>
+<div id="cell-005" class="cell" data-execution_count="74">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_ames <span class="op">=</span> pd.read_csv(<span class="st">"https://dlsun.github.io/pods/data/AmesHousing.txt"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_ames.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+<pre><code>(2930, 82)</code></pre>
+</div>
+</div>
+<div id="e8bb38b3" class="cell" data-execution_count="93">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_ames.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<pre><code>Index(['Order', 'PID', 'MS SubClass', 'MS Zoning', 'Lot Frontage', 'Lot Area',
+       'Street', 'Alley', 'Lot Shape', 'Land Contour', 'Utilities',
+       'Lot Config', 'Land Slope', 'Neighborhood', 'Condition 1',
+       'Condition 2', 'Bldg Type', 'House Style', 'Overall Qual',
+       'Overall Cond', 'Year Built', 'Year Remod/Add', 'Roof Style',
+       'Roof Matl', 'Exterior 1st', 'Exterior 2nd', 'Mas Vnr Type',
+       'Mas Vnr Area', 'Exter Qual', 'Exter Cond', 'Foundation', 'Bsmt Qual',
+       'Bsmt Cond', 'Bsmt Exposure', 'BsmtFin Type 1', 'BsmtFin SF 1',
+       'BsmtFin Type 2', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF',
+       'Heating', 'Heating QC', 'Central Air', 'Electrical', '1st Flr SF',
+       '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath',
+       'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr',
+       'Kitchen AbvGr', 'Kitchen Qual', 'TotRms AbvGrd', 'Functional',
+       'Fireplaces', 'Fireplace Qu', 'Garage Type', 'Garage Yr Blt',
+       'Garage Finish', 'Garage Cars', 'Garage Area', 'Garage Qual',
+       'Garage Cond', 'Paved Drive', 'Wood Deck SF', 'Open Porch SF',
+       'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Pool QC',
+       'Fence', 'Misc Feature', 'Misc Val', 'Mo Sold', 'Yr Sold', 'Sale Type',
+       'Sale Condition', 'SalePrice', 'Bathrooms', 'dist_euclid',
+       'dist_manhattan'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>1. Suppose that you really like house 0 in the Ames housing data set, but it is too expensive. Find cheaper homes that are similar to it — in terms of living area, number of bedrooms, number of bathrooms — by calculating distances from house 0. You might want to try different distance metrics and different scaling methods; how sensitive are your results to these choices?</p>
+<p>Be sure to actually look at the profiles of the homes that your algorithm picked out as most similar (based on these 3 variables). Do they make sense?</p>
+<p><em>Think:</em> If the goal is to find a “good deal” on a similar house, should sale price be included as a variable in your distance metric?</p>
+<div id="cell-007" class="cell" data-execution_count="76">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"Bathrooms"</span>] <span class="op">=</span> df_ames[<span class="st">"Full Bath"</span>] <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span>df_ames[<span class="st">"Half Bath"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>house0 <span class="op">=</span> df_ames.loc[<span class="dv">0</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>show_vars <span class="op">=</span> [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>, <span class="st">"Bathrooms"</span>, <span class="st">"SalePrice"</span>, <span class="st">"Neighborhood"</span>, <span class="st">"Year Built"</span>, <span class="st">"House Style"</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>house0[show_vars]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>Gr Liv Area        1656
+Bedroom AbvGr         3
+Bathrooms           1.0
+SalePrice        215000
+Neighborhood      NAmes
+Year Built         1960
+House Style      1Story
+Name: 0, dtype: object</code></pre>
+</div>
+</div>
+<div id="53ad65d0" class="cell" data-execution_count="77">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>, <span class="st">"Bathrooms"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_ames[features].astype(<span class="bu">float</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>X_z <span class="op">=</span> (X <span class="op">-</span> X.mean())<span class="op">/</span> X.std()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> X_z <span class="op">-</span> X_z.loc[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="98770943" class="cell" data-execution_count="78">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>] <span class="op">=</span> np.sqrt((diff<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>0       0.000000
+1226    0.009891
+1940    0.017804
+1357    0.019782
+291     0.019782
+758     0.019782
+2637    0.023738
+618     0.023738
+2700    0.031651
+1541    0.031651
+Name: dist_euclid, dtype: float64</code></pre>
+</div>
+</div>
+<div id="6c853567" class="cell" data-execution_count="79">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>] <span class="op">=</span> diff.<span class="bu">abs</span>().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<pre><code>0       0.000000
+1226    0.009891
+1940    0.017804
+758     0.019782
+1357    0.019782
+291     0.019782
+618     0.023738
+2637    0.023738
+2700    0.031651
+1541    0.031651
+Name: dist_manhattan, dtype: float64</code></pre>
+</div>
+</div>
+<div id="fc39cd74" class="cell" data-execution_count="80">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice <span class="op">=</span> df_ames[df_ames[<span class="st">"SalePrice"</span>]<span class="op">&lt;</span> house0[<span class="st">"SalePrice"</span>]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_euclid"</span>)[show_vars <span class="op">+</span> [<span class="st">"dist_euclid"</span>]].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gr Liv Area</th>
+<th data-quarto-table-cell-role="th">Bedroom AbvGr</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">Neighborhood</th>
+<th data-quarto-table-cell-role="th">Year Built</th>
+<th data-quarto-table-cell-role="th">House Style</th>
+<th data-quarto-table-cell-role="th">dist_euclid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1226</th>
+<td>1661</td>
+<td>3</td>
+<td>1.0</td>
+<td>165500</td>
+<td>NAmes</td>
+<td>1955</td>
+<td>SLvl</td>
+<td>0.009891</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1940</th>
+<td>1647</td>
+<td>3</td>
+<td>1.0</td>
+<td>153000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.017804</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1357</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>161000</td>
+<td>OldTown</td>
+<td>1925</td>
+<td>2Story</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">758</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>IDOTRR</td>
+<td>1927</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">291</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>100000</td>
+<td>SWISU</td>
+<td>1931</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2637</th>
+<td>1668</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.023738</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">618</th>
+<td>1644</td>
+<td>3</td>
+<td>1.0</td>
+<td>167000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.023738</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2700</th>
+<td>1640</td>
+<td>3</td>
+<td>1.0</td>
+<td>131000</td>
+<td>Sawyer</td>
+<td>1950</td>
+<td>1Story</td>
+<td>0.031651</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1529</th>
+<td>1639</td>
+<td>3</td>
+<td>1.0</td>
+<td>115000</td>
+<td>SWISU</td>
+<td>1936</td>
+<td>1.5Fin</td>
+<td>0.033629</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">179</th>
+<td>1633</td>
+<td>3</td>
+<td>1.0</td>
+<td>129000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.045499</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="b0723366" class="cell" data-execution_count="81">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_manhattan"</span>)[show_vars <span class="op">+</span> [<span class="st">"dist_manhattan"</span>]].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gr Liv Area</th>
+<th data-quarto-table-cell-role="th">Bedroom AbvGr</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">Neighborhood</th>
+<th data-quarto-table-cell-role="th">Year Built</th>
+<th data-quarto-table-cell-role="th">House Style</th>
+<th data-quarto-table-cell-role="th">dist_manhattan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1226</th>
+<td>1661</td>
+<td>3</td>
+<td>1.0</td>
+<td>165500</td>
+<td>NAmes</td>
+<td>1955</td>
+<td>SLvl</td>
+<td>0.009891</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1940</th>
+<td>1647</td>
+<td>3</td>
+<td>1.0</td>
+<td>153000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.017804</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">291</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>100000</td>
+<td>SWISU</td>
+<td>1931</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">758</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>IDOTRR</td>
+<td>1927</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1357</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>161000</td>
+<td>OldTown</td>
+<td>1925</td>
+<td>2Story</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">618</th>
+<td>1644</td>
+<td>3</td>
+<td>1.0</td>
+<td>167000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.023738</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2637</th>
+<td>1668</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.023738</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2700</th>
+<td>1640</td>
+<td>3</td>
+<td>1.0</td>
+<td>131000</td>
+<td>Sawyer</td>
+<td>1950</td>
+<td>1Story</td>
+<td>0.031651</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1529</th>
+<td>1639</td>
+<td>3</td>
+<td>1.0</td>
+<td>115000</td>
+<td>SWISU</td>
+<td>1936</td>
+<td>1.5Fin</td>
+<td>0.033629</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">179</th>
+<td>1633</td>
+<td>3</td>
+<td>1.0</td>
+<td>129000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.045499</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We added sale price after finding the the home with the colosest distance based on the 3 variables “Liv Gr Area”, “Bathrooms”, “Bedroom AbvGr”. Then found all saleprices that were less than the one of house 0 and found which hosues hasd the least distacne form house 0 if less than house 0 saleprice.</p>
+<p>2. Continuing part 1. Suppose that you really like house 0 in the data set, but it is too expensive. Find cheaper homes that are similar to it — in terms of living area, number of bedrooms, number of bathrooms, <strong>and House Style</strong> — by calculating distances from house 0. You might want to try different distance metrics and different scaling methods; how sensitive are your results to these choices?</p>
+<p>Be sure to actually look at the profiles of the homes that your algorithm picked out as most similar. Do they make sense?</p>
+<div id="fe5babe6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>housestyle <span class="op">=</span> pd.get_dummies(df_ames[<span class="st">"House Style"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-010" class="cell" data-execution_count="87">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.concat([df_ames[features].astype(<span class="bu">float</span>), housestyle],</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>diff2 <span class="op">=</span> X <span class="op">-</span> X.loc[<span class="dv">0</span>]              <span class="co"># each row minus house A's row</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>diff2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="87">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gr Liv Area</th>
+<th data-quarto-table-cell-role="th">Bedroom AbvGr</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">1.5Fin</th>
+<th data-quarto-table-cell-role="th">1.5Unf</th>
+<th data-quarto-table-cell-role="th">1Story</th>
+<th data-quarto-table-cell-role="th">2.5Fin</th>
+<th data-quarto-table-cell-role="th">2.5Unf</th>
+<th data-quarto-table-cell-role="th">2Story</th>
+<th data-quarto-table-cell-role="th">SFoyer</th>
+<th data-quarto-table-cell-role="th">SLvl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>-760.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>-327.0</td>
+<td>0.0</td>
+<td>0.5</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>454.0</td>
+<td>0.0</td>
+<td>1.5</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>-27.0</td>
+<td>0.0</td>
+<td>1.5</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2925</th>
+<td>-653.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2926</th>
+<td>-754.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2927</th>
+<td>-686.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2928</th>
+<td>-267.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2929</th>
+<td>344.0</td>
+<td>0.0</td>
+<td>1.5</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>2930 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div id="d022cfc4" class="cell" data-execution_count="88">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>] <span class="op">=</span> np.sqrt((diff2<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="88">
+<pre><code>0       0.000000
+1800    1.000000
+1197    1.414214
+1927    1.414214
+1550    1.500000
+1293    2.000000
+2638    2.000000
+655     2.061553
+1493    2.061553
+2795    2.236068
+Name: dist_euclid, dtype: float64</code></pre>
+</div>
+</div>
+<div id="1776bceb" class="cell" data-execution_count="89">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>] <span class="op">=</span> diff2.<span class="bu">abs</span>().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>0       0.0
+1800    1.0
+1927    2.0
+1197    2.0
+1550    2.5
+2795    3.0
+508     3.5
+1493    3.5
+655     3.5
+1293    4.0
+Name: dist_manhattan, dtype: float64</code></pre>
+</div>
+</div>
+<div id="38c6ca42" class="cell" data-execution_count="91">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_euclid"</span>)[</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    show_vars <span class="op">+</span> [<span class="st">"dist_euclid"</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="91">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gr Liv Area</th>
+<th data-quarto-table-cell-role="th">Bedroom AbvGr</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">Neighborhood</th>
+<th data-quarto-table-cell-role="th">Year Built</th>
+<th data-quarto-table-cell-role="th">House Style</th>
+<th data-quarto-table-cell-role="th">dist_euclid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1226</th>
+<td>1661</td>
+<td>3</td>
+<td>1.0</td>
+<td>165500</td>
+<td>NAmes</td>
+<td>1955</td>
+<td>SLvl</td>
+<td>0.009891</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1940</th>
+<td>1647</td>
+<td>3</td>
+<td>1.0</td>
+<td>153000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.017804</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1357</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>161000</td>
+<td>OldTown</td>
+<td>1925</td>
+<td>2Story</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">758</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>IDOTRR</td>
+<td>1927</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">291</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>100000</td>
+<td>SWISU</td>
+<td>1931</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2637</th>
+<td>1668</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.023738</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">618</th>
+<td>1644</td>
+<td>3</td>
+<td>1.0</td>
+<td>167000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.023738</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2700</th>
+<td>1640</td>
+<td>3</td>
+<td>1.0</td>
+<td>131000</td>
+<td>Sawyer</td>
+<td>1950</td>
+<td>1Story</td>
+<td>0.031651</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1529</th>
+<td>1639</td>
+<td>3</td>
+<td>1.0</td>
+<td>115000</td>
+<td>SWISU</td>
+<td>1936</td>
+<td>1.5Fin</td>
+<td>0.033629</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">179</th>
+<td>1633</td>
+<td>3</td>
+<td>1.0</td>
+<td>129000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.045499</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="6cdcf67d" class="cell" data-execution_count="92">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_manhattan"</span>)[</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    show_vars <span class="op">+</span> [<span class="st">"dist_manhattan"</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="92">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gr Liv Area</th>
+<th data-quarto-table-cell-role="th">Bedroom AbvGr</th>
+<th data-quarto-table-cell-role="th">Bathrooms</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">Neighborhood</th>
+<th data-quarto-table-cell-role="th">Year Built</th>
+<th data-quarto-table-cell-role="th">House Style</th>
+<th data-quarto-table-cell-role="th">dist_manhattan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1226</th>
+<td>1661</td>
+<td>3</td>
+<td>1.0</td>
+<td>165500</td>
+<td>NAmes</td>
+<td>1955</td>
+<td>SLvl</td>
+<td>0.009891</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1940</th>
+<td>1647</td>
+<td>3</td>
+<td>1.0</td>
+<td>153000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.017804</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">291</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>100000</td>
+<td>SWISU</td>
+<td>1931</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">758</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>IDOTRR</td>
+<td>1927</td>
+<td>1.5Fin</td>
+<td>0.019782</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1357</th>
+<td>1666</td>
+<td>3</td>
+<td>1.0</td>
+<td>161000</td>
+<td>OldTown</td>
+<td>1925</td>
+<td>2Story</td>
+<td>0.019782</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">618</th>
+<td>1644</td>
+<td>3</td>
+<td>1.0</td>
+<td>167000</td>
+<td>NAmes</td>
+<td>1953</td>
+<td>1Story</td>
+<td>0.023738</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2637</th>
+<td>1668</td>
+<td>3</td>
+<td>1.0</td>
+<td>135000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.023738</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2700</th>
+<td>1640</td>
+<td>3</td>
+<td>1.0</td>
+<td>131000</td>
+<td>Sawyer</td>
+<td>1950</td>
+<td>1Story</td>
+<td>0.031651</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1529</th>
+<td>1639</td>
+<td>3</td>
+<td>1.0</td>
+<td>115000</td>
+<td>SWISU</td>
+<td>1936</td>
+<td>1.5Fin</td>
+<td>0.033629</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">179</th>
+<td>1633</td>
+<td>3</td>
+<td>1.0</td>
+<td>129000</td>
+<td>OldTown</td>
+<td>1948</td>
+<td>1.5Fin</td>
+<td>0.045499</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>I can see some differences between the Euclidean and Manhattan distance results, although the top two closest houses are the same. Adding the dummy variables for House Style did not change the most closely related houses very much, but it did change the order of some of the other similar houses. This suggests that the results are somewhat sensitive to the distance metric and to including House Style, but the closest matches are still fairly consistent.</p>
+<p>3. Continuing parts 1 and 2. Suppose that you really like house 0 in the data set, but it is too expensive. Find cheaper homes that are similar to it, by calculating distances. You can <strong>choose the variables to include, but include both quantitative and categorical variables</strong>. Be sure to actually look at the profiles of the homes that your algorithm picked out as most similar. Do they make sense?</p>
+<p>You might want to try different distance metrics and different scaling methods; how sensitive are your results to these choices?</p>
+<p><em>Hint:</em> There are many variables in the data set. Do not attempt to compute distance based on all the variables! You will want to pare down the number of variables, but be sure to include a mixture of categorical and quantitative variables. Refer to the <a href="https://ww2.amstat.org/publications/jse/v19n3/decock/DataDocumentation.txt">data documentation</a> for information about the variables.</p>
+<div id="5f104861" class="cell" data-execution_count="94">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Zoning <span class="op">=</span> pd.get_dummies(df_ames[<span class="st">"MS Zoning"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="35dfcde8" class="cell" data-execution_count="95">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Street <span class="op">=</span> pd.get_dummies(df_ames[<span class="st">"Street"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="a4e3be3a" class="cell" data-execution_count="99">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Fence <span class="op">=</span> pd.get_dummies(df_ames[<span class="st">"Fence"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-013" class="cell" data-execution_count="114">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Fireplaces"</span>, <span class="st">"Garage Area"</span>, <span class="st">"Lot Area"</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.concat([df_ames[features].astype(<span class="bu">float</span>), Street, Zoning, Fence],</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>show_vars <span class="op">=</span> [<span class="st">"Fireplaces"</span>, <span class="st">"Garage Area"</span>, <span class="st">"Lot Area"</span>, <span class="st">"Street"</span>, <span class="st">"MS Zoning"</span>, <span class="st">"Fence"</span>, <span class="st">"SalePrice"</span>]</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>diff3 <span class="op">=</span> X <span class="op">-</span> X.loc[<span class="dv">0</span>]              <span class="co"># each row minus house A's row</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>diff3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="114">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Fireplaces</th>
+<th data-quarto-table-cell-role="th">Garage Area</th>
+<th data-quarto-table-cell-role="th">Lot Area</th>
+<th data-quarto-table-cell-role="th">Grvl</th>
+<th data-quarto-table-cell-role="th">Pave</th>
+<th data-quarto-table-cell-role="th">A (agr)</th>
+<th data-quarto-table-cell-role="th">C (all)</th>
+<th data-quarto-table-cell-role="th">FV</th>
+<th data-quarto-table-cell-role="th">I (all)</th>
+<th data-quarto-table-cell-role="th">RH</th>
+<th data-quarto-table-cell-role="th">RL</th>
+<th data-quarto-table-cell-role="th">RM</th>
+<th data-quarto-table-cell-role="th">GdPrv</th>
+<th data-quarto-table-cell-role="th">GdWo</th>
+<th data-quarto-table-cell-role="th">MnPrv</th>
+<th data-quarto-table-cell-role="th">MnWw</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>-2.0</td>
+<td>202.0</td>
+<td>-20148.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>-1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>-2.0</td>
+<td>-216.0</td>
+<td>-17503.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0.0</td>
+<td>-6.0</td>
+<td>-20610.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>-1.0</td>
+<td>-46.0</td>
+<td>-17940.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2925</th>
+<td>-2.0</td>
+<td>60.0</td>
+<td>-23833.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2926</th>
+<td>-2.0</td>
+<td>-44.0</td>
+<td>-22885.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2927</th>
+<td>-2.0</td>
+<td>-528.0</td>
+<td>-21329.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2928</th>
+<td>-1.0</td>
+<td>-110.0</td>
+<td>-21760.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2929</th>
+<td>-1.0</td>
+<td>122.0</td>
+<td>-22143.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>2930 rows × 16 columns</p>
+</div>
+</div>
+</div>
+<div id="8feaa94e" class="cell" data-execution_count="115">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>] <span class="op">=</span> np.sqrt((diff3<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_euclid"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<pre><code>0          0.000000
+1013     550.989111
+2903     580.491171
+2229     899.077305
+2282    1079.737931
+2686    1350.854174
+505     1812.027318
+2294    2217.680320
+2338    2880.336786
+834     3072.016927
+Name: dist_euclid, dtype: float64</code></pre>
+</div>
+</div>
+<div id="897f1bc0" class="cell" data-execution_count="116">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>] <span class="op">=</span> diff3.<span class="bu">abs</span>().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_ames[<span class="st">"dist_manhattan"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="116">
+<pre><code>0          0.0
+1013     583.0
+2903     782.0
+2229     942.0
+2686    1401.0
+2282    1522.0
+505     1873.0
+2294    2358.0
+2338    2926.0
+834     3084.0
+Name: dist_manhattan, dtype: float64</code></pre>
+</div>
+</div>
+<div id="9aa6dcba" class="cell" data-execution_count="117">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice <span class="op">=</span> df_ames[</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    df_ames[<span class="st">"SalePrice"</span>] <span class="op">&lt;</span> house0[<span class="st">"SalePrice"</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>].copy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="525c93f9" class="cell" data-execution_count="118">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_euclid"</span>)[</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    show_vars <span class="op">+</span> [<span class="st">"dist_euclid"</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="118">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Fireplaces</th>
+<th data-quarto-table-cell-role="th">Garage Area</th>
+<th data-quarto-table-cell-role="th">Lot Area</th>
+<th data-quarto-table-cell-role="th">Street</th>
+<th data-quarto-table-cell-role="th">MS Zoning</th>
+<th data-quarto-table-cell-role="th">Fence</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">dist_euclid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1013</th>
+<td>2</td>
+<td>495.0</td>
+<td>31220</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>115000</td>
+<td>550.989111</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2903</th>
+<td>0</td>
+<td>270.0</td>
+<td>31250</td>
+<td>Pave</td>
+<td>A (agr)</td>
+<td>NaN</td>
+<td>81500</td>
+<td>580.491171</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2229</th>
+<td>2</td>
+<td>484.0</td>
+<td>32668</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>200624</td>
+<td>899.077305</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2282</th>
+<td>1</td>
+<td>1356.0</td>
+<td>32463</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>168000</td>
+<td>1079.737931</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2294</th>
+<td>2</td>
+<td>672.0</td>
+<td>33983</td>
+<td>Pave</td>
+<td>RL</td>
+<td>GdPrv</td>
+<td>196000</td>
+<td>2217.680320</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2338</th>
+<td>0</td>
+<td>572.0</td>
+<td>34650</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>145000</td>
+<td>2880.336786</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">834</th>
+<td>0</td>
+<td>538.0</td>
+<td>28698</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>185000</td>
+<td>3072.016927</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2273</th>
+<td>2</td>
+<td>995.0</td>
+<td>35133</td>
+<td>Grvl</td>
+<td>RL</td>
+<td>NaN</td>
+<td>186700</td>
+<td>3395.270240</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2298</th>
+<td>0</td>
+<td>444.0</td>
+<td>27697</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>80000</td>
+<td>4073.866591</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2764</th>
+<td>0</td>
+<td>390.0</td>
+<td>36500</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>190000</td>
+<td>4732.013102</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="ed498d67" class="cell" data-execution_count="119">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_cheaper_SalePrice.sort_values(<span class="st">"dist_manhattan"</span>)[</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    show_vars <span class="op">+</span> [<span class="st">"dist_manhattan"</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="119">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Fireplaces</th>
+<th data-quarto-table-cell-role="th">Garage Area</th>
+<th data-quarto-table-cell-role="th">Lot Area</th>
+<th data-quarto-table-cell-role="th">Street</th>
+<th data-quarto-table-cell-role="th">MS Zoning</th>
+<th data-quarto-table-cell-role="th">Fence</th>
+<th data-quarto-table-cell-role="th">SalePrice</th>
+<th data-quarto-table-cell-role="th">dist_manhattan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1013</th>
+<td>2</td>
+<td>495.0</td>
+<td>31220</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>115000</td>
+<td>583.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2903</th>
+<td>0</td>
+<td>270.0</td>
+<td>31250</td>
+<td>Pave</td>
+<td>A (agr)</td>
+<td>NaN</td>
+<td>81500</td>
+<td>782.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2229</th>
+<td>2</td>
+<td>484.0</td>
+<td>32668</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>200624</td>
+<td>942.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2282</th>
+<td>1</td>
+<td>1356.0</td>
+<td>32463</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>168000</td>
+<td>1522.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2294</th>
+<td>2</td>
+<td>672.0</td>
+<td>33983</td>
+<td>Pave</td>
+<td>RL</td>
+<td>GdPrv</td>
+<td>196000</td>
+<td>2358.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2338</th>
+<td>0</td>
+<td>572.0</td>
+<td>34650</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>145000</td>
+<td>2926.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">834</th>
+<td>0</td>
+<td>538.0</td>
+<td>28698</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>185000</td>
+<td>3084.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2273</th>
+<td>2</td>
+<td>995.0</td>
+<td>35133</td>
+<td>Grvl</td>
+<td>RL</td>
+<td>NaN</td>
+<td>186700</td>
+<td>3832.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2298</th>
+<td>0</td>
+<td>444.0</td>
+<td>27697</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>80000</td>
+<td>4159.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2764</th>
+<td>0</td>
+<td>390.0</td>
+<td>36500</td>
+<td>Pave</td>
+<td>RL</td>
+<td>NaN</td>
+<td>190000</td>
+<td>4870.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The Euclidean and Manhattan methods gave similar results, although the order of some houses changed. Overall, the closest matches stayed fairly consistent, and scaling helped prevent larger-number variables like lot area from dominating the distance calculation.</p>
+</section>
+<section id="colleges-similar-to-cal-poly" class="level2">
+<h2 class="anchored" data-anchor-id="colleges-similar-to-cal-poly">Colleges similar to Cal Poly</h2>
+<p>We’ll use data from the <a href="https://collegescorecard.ed.gov/">College Scorecard data</a> to find colleges and universities that are similar to Cal Poly.</p>
+<div id="cell-016" class="cell" data-execution_count="120">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_college <span class="op">=</span> pd.read_csv(<span class="st">"https://datasci112.stanford.edu/data/college_attributes.csv"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df_college.set_index(<span class="st">"Institution"</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>df_college</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">State</th>
+<th data-quarto-table-cell-role="th">AdmissionRate</th>
+<th data-quarto-table-cell-role="th">Undergraduates</th>
+<th data-quarto-table-cell-role="th">CarnegieClassification</th>
+<th data-quarto-table-cell-role="th">Ownership</th>
+<th data-quarto-table-cell-role="th">PCIP01</th>
+<th data-quarto-table-cell-role="th">PCIP03</th>
+<th data-quarto-table-cell-role="th">PCIP04</th>
+<th data-quarto-table-cell-role="th">PCIP05</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">PCIP44</th>
+<th data-quarto-table-cell-role="th">PCIP45</th>
+<th data-quarto-table-cell-role="th">PCIP46</th>
+<th data-quarto-table-cell-role="th">PCIP47</th>
+<th data-quarto-table-cell-role="th">PCIP48</th>
+<th data-quarto-table-cell-role="th">PCIP49</th>
+<th data-quarto-table-cell-role="th">PCIP50</th>
+<th data-quarto-table-cell-role="th">PCIP51</th>
+<th data-quarto-table-cell-role="th">PCIP52</th>
+<th data-quarto-table-cell-role="th">PCIP54</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Institution</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Alabama A &amp; M University</th>
+<td>Normal</td>
+<td>AL</td>
+<td>0.7160</td>
+<td>5098.0</td>
+<td>Master's Colleges &amp; Universities: Larger Programs</td>
+<td>Public</td>
+<td>0.0445</td>
+<td>0.0071</td>
+<td>0.0053</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0409</td>
+<td>0.0249</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0231</td>
+<td>0.0000</td>
+<td>0.1637</td>
+<td>0.0000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">University of Alabama at Birmingham</th>
+<td>Birmingham</td>
+<td>AL</td>
+<td>0.8854</td>
+<td>13284.0</td>
+<td>Doctoral Universities: Very High Research Acti...</td>
+<td>Public</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0020</td>
+<td>...</td>
+<td>0.0195</td>
+<td>0.0239</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0249</td>
+<td>0.2088</td>
+<td>0.2159</td>
+<td>0.0141</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">University of Alabama in Huntsville</th>
+<td>Huntsville</td>
+<td>AL</td>
+<td>0.7367</td>
+<td>7358.0</td>
+<td>Doctoral Universities: Very High Research Acti...</td>
+<td>Public</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0127</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0407</td>
+<td>0.1341</td>
+<td>0.1930</td>
+<td>0.0073</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Alabama State University</th>
+<td>Montgomery</td>
+<td>AL</td>
+<td>0.9799</td>
+<td>3495.0</td>
+<td>Doctoral/Professional Universities</td>
+<td>Public</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0648</td>
+<td>0.0196</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0511</td>
+<td>0.0904</td>
+<td>0.1513</td>
+<td>0.0059</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The University of Alabama</th>
+<td>Tuscaloosa</td>
+<td>AL</td>
+<td>0.7890</td>
+<td>30725.0</td>
+<td>Doctoral Universities: Very High Research Acti...</td>
+<td>Public</td>
+<td>0.0000</td>
+<td>0.0061</td>
+<td>0.0000</td>
+<td>0.0019</td>
+<td>...</td>
+<td>0.0072</td>
+<td>0.0661</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0234</td>
+<td>0.1077</td>
+<td>0.2916</td>
+<td>0.0096</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Florida Academy of Nursing</th>
+<td>Miramar</td>
+<td>FL</td>
+<td>0.3088</td>
+<td>239.0</td>
+<td>Not applicable</td>
+<td>Private for-profit</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0000</td>
+<td>1.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Herzing University-Tampa</th>
+<td>Tampa</td>
+<td>FL</td>
+<td>0.9630</td>
+<td>68.0</td>
+<td>Not applicable</td>
+<td>Private nonprofit</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Abilene Christian University-Undergraduate Online</th>
+<td>Addison</td>
+<td>TX</td>
+<td>1.0000</td>
+<td>415.0</td>
+<td>Not applicable</td>
+<td>Private nonprofit</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Great Northern University</th>
+<td>Spokane</td>
+<td>WA</td>
+<td>1.0000</td>
+<td>25.0</td>
+<td>Not applicable</td>
+<td>Private nonprofit</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.1250</td>
+<td>0.0000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Arizona College of Nursing-Salt Lake City</th>
+<td>Murray</td>
+<td>UT</td>
+<td>1.0000</td>
+<td>186.0</td>
+<td>Not applicable</td>
+<td>Private for-profit</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>...</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+</tbody>
+</table>
+
+<p>1957 rows × 44 columns</p>
+</div>
+</div>
+</div>
+<p>We’ll want to single out Cal Poly, which we can do like this.</p>
+<div id="cell-018" class="cell" data-execution_count="125">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>school_name <span class="op">=</span> <span class="st">"California Polytechnic State University-San Luis Obispo"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>cp <span class="op">=</span> df_college.loc[<span class="st">"California Polytechnic State University-San Luis Obispo"</span>]</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>cp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>City                                                        San Luis Obispo
+State                                                                    CA
+AdmissionRate                                                          0.33
+Undergraduates                                                      21090.0
+CarnegieClassification    Master's Colleges &amp; Universities: Larger Programs
+Ownership                                                            Public
+PCIP01                                                               0.1084
+PCIP03                                                               0.0255
+PCIP04                                                               0.0441
+PCIP05                                                               0.0019
+PCIP09                                                               0.0353
+PCIP10                                                               0.0175
+PCIP11                                                               0.0326
+PCIP12                                                                  0.0
+PCIP13                                                                0.013
+PCIP14                                                               0.2314
+PCIP15                                                                0.011
+PCIP16                                                               0.0019
+PCIP19                                                                  0.0
+PCIP22                                                                  0.0
+PCIP23                                                               0.0147
+PCIP24                                                               0.0229
+PCIP25                                                                  0.0
+PCIP26                                                               0.0495
+PCIP27                                                               0.0173
+PCIP29                                                                  0.0
+PCIP30                                                               0.0223
+PCIP31                                                               0.0419
+PCIP38                                                               0.0073
+PCIP39                                                                  0.0
+PCIP40                                                               0.0205
+PCIP41                                                                  0.0
+PCIP42                                                               0.0288
+PCIP43                                                                  0.0
+PCIP44                                                                  0.0
+PCIP45                                                               0.0588
+PCIP46                                                                  0.0
+PCIP47                                                                  0.0
+PCIP48                                                                  0.0
+PCIP49                                                                  0.0
+PCIP50                                                                0.013
+PCIP51                                                                0.006
+PCIP52                                                               0.1637
+PCIP54                                                                0.011
+Name: California Polytechnic State University-San Luis Obispo, dtype: object</code></pre>
+</div>
+</div>
+<p>1. Based on only the admission rate and the number of undergraduates, what schools are most similar to Cal Poly? Specify how you’re making this decision.</p>
+<div id="cell-020" class="cell" data-execution_count="129">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"AdmissionRate"</span>, <span class="st">"Undergraduates"</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_college[features].astype(<span class="bu">float</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>X_z <span class="op">=</span> (X <span class="op">-</span> X.mean())<span class="op">/</span> X.std()</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> X_z <span class="op">-</span> X_z.loc[school_name]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="4476fd34" class="cell" data-execution_count="130">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_euclid"</span>] <span class="op">=</span> np.sqrt((diff<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_euclid"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="130">
+<pre><code>Institution
+California Polytechnic State University-San Luis Obispo    0.000000
+University of California-Santa Barbara                     0.309162
+DeVry University-Illinois                                  0.593121
+University of North Carolina at Chapel Hill                0.596846
+Clemson University                                         0.736788
+University of Virginia-Main Campus                         0.761296
+CUNY Hunter College                                        0.761441
+Stony Brook University                                     0.795756
+Boston University                                          0.797041
+North Carolina State University at Raleigh                 0.826264
+Name: dist_euclid, dtype: float64</code></pre>
+</div>
+</div>
+<p>Based on admission rate and number of undergraduates, UC Santa Barbara is the most similar school to Cal Poly. I determined this using standardized Euclidean distance, where smaller distance values mean the schools are more similar.</p>
+<p>2. Now consider the admission rate, the number of undergraduates, and also the <a href="https://en.wikipedia.org/wiki/Carnegie_Classification_of_Institutions_of_Higher_Education">Carnegie classification</a> of the type of school, and the ownership (public, private, etc.) Based on these variables, what schools are most similar to Cal Poly? Specify how you’re making this decision.</p>
+<div id="cell-023" class="cell" data-execution_count="137">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>Carnegie <span class="op">=</span> pd.get_dummies(df_college[<span class="st">"CarnegieClassification"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Owner <span class="op">=</span> pd.get_dummies(df_college[<span class="st">"Ownership"</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="36a113b9" class="cell" data-execution_count="140">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.concat([df_college[features].astype(<span class="bu">float</span>), Carnegie, Owner],</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>X_z <span class="op">=</span> (X <span class="op">-</span> X.mean()) <span class="op">/</span> X.std()</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> X_z <span class="op">-</span> X_z.loc[school_name]             <span class="co"># each row minus house A's row</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>diff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="140">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">AdmissionRate</th>
+<th data-quarto-table-cell-role="th">Undergraduates</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Career &amp; Technical-High Nontraditional</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Career &amp; Technical-High Traditional</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Career &amp; Technical-Mixed Traditional/Nontraditional</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Transfer-High Nontraditional</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Transfer-High Traditional</th>
+<th data-quarto-table-cell-role="th">Associate's Colleges: High Transfer-Mixed Traditional/Nontraditional</th>
+<th data-quarto-table-cell-role="th">Baccalaureate Colleges: Arts &amp; Sciences Focus</th>
+<th data-quarto-table-cell-role="th">Baccalaureate Colleges: Diverse Fields</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Special Focus Four-Year: Other Special Focus Institutions</th>
+<th data-quarto-table-cell-role="th">Special Focus Four-Year: Research Institution</th>
+<th data-quarto-table-cell-role="th">Special Focus Two-Year: Arts &amp; Design</th>
+<th data-quarto-table-cell-role="th">Special Focus Two-Year: Health Professions</th>
+<th data-quarto-table-cell-role="th">Special Focus Two-Year: Other Fields</th>
+<th data-quarto-table-cell-role="th">Special Focus Two-Year: Technical Professions</th>
+<th data-quarto-table-cell-role="th">Tribal Colleges</th>
+<th data-quarto-table-cell-role="th">Private for-profit</th>
+<th data-quarto-table-cell-role="th">Private nonprofit</th>
+<th data-quarto-table-cell-role="th">Public</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Institution</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Alabama A &amp; M University</th>
+<td>1.747033</td>
+<td>-2.058627</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">University of Alabama at Birmingham</th>
+<td>2.513736</td>
+<td>-1.004855</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">University of Alabama in Huntsville</th>
+<td>1.840721</td>
+<td>-1.767700</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Alabama State University</th>
+<td>2.941443</td>
+<td>-2.264979</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The University of Alabama</th>
+<td>2.077431</td>
+<td>1.240300</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Florida Academy of Nursing</th>
+<td>-0.095951</td>
+<td>-2.684119</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.512607</td>
+<td>0.000000</td>
+<td>-2.171317</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Herzing University-Tampa</th>
+<td>2.864953</td>
+<td>-2.706132</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>2.046022</td>
+<td>-2.171317</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Abilene Christian University-Undergraduate Online</th>
+<td>3.032415</td>
+<td>-2.661463</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>2.046022</td>
+<td>-2.171317</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Great Northern University</th>
+<td>3.032415</td>
+<td>-2.711667</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>2.046022</td>
+<td>-2.171317</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Arizona College of Nursing-Salt Lake City</th>
+<td>3.032415</td>
+<td>-2.690942</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.512607</td>
+<td>0.000000</td>
+<td>-2.171317</td>
+</tr>
+</tbody>
+</table>
+
+<p>1957 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div id="176e3ba8" class="cell" data-execution_count="141">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_manhattan"</span>] <span class="op">=</span> diff.<span class="bu">abs</span>().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_manhattan"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="141">
+<pre><code>Institution
+California Polytechnic State University-San Luis Obispo    0.000000
+CUNY Hunter College                                        1.072635
+CUNY Bernard M Baruch College                              1.516545
+CUNY John Jay College of Criminal Justice                  1.586893
+CUNY Brooklyn College                                      1.928126
+California State Polytechnic University-Pomona             1.985377
+CUNY Queens College                                        2.059428
+CUNY Lehman College                                        2.346995
+Eastern New Mexico University-Main Campus                  2.369223
+The University of West Florida                             2.468246
+Name: dist_manhattan, dtype: float64</code></pre>
+</div>
+</div>
+<p>After adding Carnegie classification and ownership, the schools most similar to Cal Poly changed compared with using only admission rate and undergraduate enrollment. The Euclidean and Manhattan methods also produced somewhat different rankings, showing that the results are sensitive to both the variables included and the distance metric used. CUNY Hunter College is closest based on this.</p>
+<p>3. The columns whose names begin with “PCIP” contain the proportions of students at each school studying various fields (e.g., Engineering, Psychology). Each field is represented by a two-digit code called the <a href="https://nces.ed.gov/ipeds/cipcode/browse.aspx?y=55">CIP code</a>.</p>
+<p>If we only consider the proportions of students studying various fields, what schools are most similar to Cal Poly? Specify how you’re making this decision.</p>
+<div id="cell-026" class="cell" data-execution_count="142">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE. ADD CELLS AS NEEDED</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>pcip_cols <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> df_college.columns <span class="cf">if</span> col.startswith(<span class="st">"PCIP"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="0b3ec186" class="cell" data-execution_count="143">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_college[pcip_cols].astype(<span class="bu">float</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> X <span class="op">-</span> X.loc[school_name]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="b598e487" class="cell" data-execution_count="144">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_pcip"</span>] <span class="op">=</span> np.sqrt((diff<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>df_college[<span class="st">"dist_pcip"</span>].sort_values().head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="144">
+<pre><code>Institution
+California Polytechnic State University-San Luis Obispo    0.000000
+North Carolina State University at Raleigh                 0.084343
+Iowa State University                                      0.085054
+University of Illinois Urbana-Champaign                    0.111475
+Mississippi State University                               0.118799
+Texas A &amp; M University-College Station                     0.123973
+Clemson University                                         0.128333
+Purdue University-Main Campus                              0.134177
+Virginia Polytechnic Institute and State University        0.137570
+Auburn University                                          0.159167
+Name: dist_pcip, dtype: float64</code></pre>
+</div>
+</div>
+<p>Based on the PCIP field of study proportions, the schools most similar to Cal Poly are North Carolina State University, Iowa State University, University of Illinois, Mississippi State University, and Texas A&amp;M University. I made this decision using Euclidean distance across all PCIP proportion variables, where a smaller distance means the school has a more similar distribution of students across majors.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
