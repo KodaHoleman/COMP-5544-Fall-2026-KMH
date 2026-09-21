@@ -1,0 +1,504 @@
+---
+title: Introduction to Python
+jupyter: python3
+---
+
+
+
+Attribution: This notebook is adapted from the ["Python Basics" notebook](https://colab.research.google.com/github/data-psl/lectures2020/blob/master/notebooks/01_python_basics.ipynb) by Mathieu Blondel.
+
+Python is one of the most popular programming languages for data analytics, both in academia and in industry. This notebook introduces just a few basics of Python. For extra practice, there are many tutorials available online such as the [DataQuest interactive tutorials](https://www.dataquest.io/course/introduction-to-python/) or [Python for Everybody](https://www.py4e.com/).
+
+## Arithmetic operations
+
+Python supports the usual arithmetic operators.
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+2 + 3
+```
+
+```{python}
+2 - 3
+```
+
+```{python}
+2 * 3
+```
+
+```{python}
+2 / 3
+```
+
+Note that `**` represents exponentiation: `2**3` is $2^3$
+
+```{python}
+2**3
+```
+
+## Variables and Values
+
+
+Programming languages use **variables** - names that refer to values. Think of a variable as a container that holds something - instead of referring to the value, you can refer to the container and you will get whatever is stored inside.
+
+In Python, we **assign** variables values using the syntax `object_name = value` You can read this as “object name gets value” in your head. Object names must start with a letter and can only contain letters, numbers, and _ (underscore)
+
+```{python}
+x = 2
+```
+
+```{python}
+x
+```
+
+We can then use the variables by referencing the variable by name.
+
+```{python}
+3 * x
+```
+
+```{python}
+y = 3
+
+x * y
+```
+
+Note the difference between `=` (assignment) and `==` (which checks for logical equality)
+
+```{python}
+x == 2
+```
+
+```{python}
+y == 2
+```
+
+Variables don't have to be numerical; for example, they can be character strings (in quotes).
+
+```{python}
+first_name = "Kevin"
+```
+
+```{python}
+first_name
+```
+
+## Error messages
+
+Trying to assign an invalid name will give an error message. Always read your error messages to investigate the problem! Error messages can sometimes be cryptic; copying the error message into Google or ChatGPT can help.
+
+```{python}
+1st_name = "Kevin"
+```
+
+## Lists
+
+Lists are a container type for ordered sequences of elements. Lists can be initialized empty
+
+```{python}
+my_list = []
+```
+
+or with some initial elements
+
+```{python}
+my_list = [1, 2, 3]
+```
+
+Lists have a dynamic size and elements can be appended to them
+
+```{python}
+my_list.append(4)
+my_list
+```
+
+The things stored in a list can be of different types.
+
+```{python}
+new_list = ["a", 10, True, 2, "z"]
+new_list
+```
+
+We can access individual elements of a list. Python uses zero-based indexing, so the first element in a list is element 0, the second element is 1, and so on.
+
+```{python}
+my_list[0]
+```
+
+```{python}
+my_list[1]
+```
+
+```{python}
+new_list[0]
+```
+
+```{python}
+new_list[1]
+```
+
+We can check if an element is in the list using `in`
+
+```{python}
+3 in my_list
+```
+
+```{python}
+5 in my_list
+```
+
+The length of a list can be obtained using the `len` function
+
+```{python}
+len(my_list)
+```
+
+```{python}
+len(new_list)
+```
+
+## Slicing
+
+We can access "slices" of a list using `list[i:j]` where `i` is the start of the slice (again, indexing starts from 0) and `j` the end of the slice. Careful: Python intervals are closed on the left but open on the right, like $[i, j)$. So `list[i:j]` starts with element `i` up to *but not including* element `j`.
+
+```{python}
+my_list[0:2]
+```
+
+```{python}
+new_list[1:4]
+```
+
+Omitting the second index means that the slice shoud run until the end of the list
+
+```{python}
+new_list[1:]
+```
+
+## Strings
+
+Strings are used to store text. They can be defined using either single quotes or double quotes
+
+```{python}
+string1 = "Kevin"
+string2 = 'Ross'
+```
+
+Strings behave similarly to lists. As such we can access individual elements in exactly the same way
+
+```{python}
+string1[0]
+```
+
+and similarly for slices
+
+```{python}
+string1[1:]
+```
+
+String concatenation is performed using the `+` operator
+
+```{python}
+string1 + string2
+```
+
+```{python}
+string1 + " " + string2
+```
+
+## Conditionals
+
+As their name indicates, conditionals are a way to execute code depending on whether a condition is True or False. As in other languages, Python supports `if` and `else` but `else if` is contracted into `elif`, as the example below demonstrates.
+
+```{python}
+my_variable = 5
+
+if my_variable < 0:
+  print("negative")
+elif my_variable == 0:
+  print("zero")
+else: # my_variable > 0
+  print("positive")
+```
+
+```{python}
+my_variable = -3
+
+if my_variable < 0:
+  print("negative")
+elif my_variable == 0:
+  print("zero")
+else: # my_variable > 0
+  print("positive")
+```
+
+```{python}
+my_variable = 0
+
+if my_variable < 0:
+  print("negative")
+elif my_variable == 0:
+  print("zero")
+else: # my_variable > 0
+  print("positive")
+```
+
+Here `<` and `>` are the strict `less` and `greater than` operators, while `==` is the equality operator (not to be confused with `=`, the variable assignment operator). The operators `<=` and `>=` can be used for less (resp. greater) than or equal comparisons.
+
+Blocks of code are delimited using indentation. Here, we use 2-space indentation but many programmers also use 4-space indentation. Any one is fine as long as you are consistent throughout your code.
+
+## Ranges
+
+The `range` function in Python generates a sequence of numbers
+
+`range(5)` generates numbers from 0 up to but not including 5: 0, 1, 2, 3, 4
+
+```{python}
+range(5)
+```
+
+We can (but don't have to) turn this into a list
+
+```{python}
+list(range(5))
+```
+
+`range(2, 8)`: Generates numbers from 2 up to but not including 8
+
+```{python}
+list(range(2, 8))
+```
+
+Ranges can be sliced like lists
+
+```{python}
+my_range = range(2, 8)
+```
+
+```{python}
+my_range[0]
+```
+
+```{python}
+my_range[1]
+```
+
+## For Loops
+
+Loops are a way to execute a block of code multiple times.
+
+```{python}
+for i in range(3):
+  print(i * 2)
+```
+
+```{python}
+for i in range(len(new_list)):
+  print(new_list[i])
+```
+
+If the goal is simply to iterate over a list, we can do so directly as follows
+
+```{python}
+for element in new_list:
+  print(element)
+```
+
+List comprehension in Python offers a concise way to create lists in a loop-like way. The general syntax of a list comprehension is:
+
+`[expression for item in iterable]`
+
+```{python}
+[i * 2 for i in range(3)]
+```
+
+## Functions
+
+A function takes some inputs and process them to return some outputs.
+
+```{python}
+def my_square(x):
+  return x ** 2
+```
+
+```{python}
+my_square(5)
+```
+
+Functions can have multiple arguments, in which case it is helpful to specify them by name them when calling the function.
+
+```{python}
+def my_power(base, exponent):
+  return base ** exponent
+```
+
+```{python}
+my_power(5, 2)
+```
+
+```{python}
+my_power(2, 5)
+```
+
+```{python}
+my_power(base = 2, exponent = 5)
+```
+
+```{python}
+my_power(exponent = 5, base = 2)
+```
+
+## Methods
+
+A method is a piece of code that is associated with an object and operates upon the data of that object. In most aspects, a method is like a function.
+
+For example, lists have methods like `append`.
+
+```{python}
+my_list.append("b")
+my_list
+```
+
+And string have methods too
+
+```{python}
+string1.upper()
+```
+
+## Built in Functions
+
+Some functions are built in to Python
+
+```{python}
+sum([1, 2, 3])
+```
+
+```{python}
+abs(-5)
+```
+
+But many functions are not
+
+```{python}
+mean([1, 2, 3])
+```
+
+## Libraries
+
+A library (or package) is a collection of additional functions and capabilities for Python. Packages that meet certain standards of quality and formatting are added to the [Python Package Index](https://pypi.org/), after which they can be esailly installed with `pip` ("package installer for python").
+
+Most of the packages we will use in this class actually come pre-installed with Colab or with Anaconda, so we won't have to worry about *installing* packages too much. (Though we will see examples of using `pip` later.) But even if the package is installed, you still need to `import` it to use its functionality.
+
+# NumPy
+
+It is possible to load the full functionality of a library with an `import` statement. The downside of this is that you then need to reference all the functions from the library using the package name.
+
+For example, NumPy is a popular library for storing arrays of numbers and performing computations on them. Suppose we want to compute the mean (a.k.a., average) of the numbers 1, 2, 3. We `import` the `numpy` library and then use it to create an `array` with the numbers 1, 2, 3 and compute their `mean`.
+
+
+
+
+```{python}
+import numpy
+
+my_nums = numpy.array([1, 2, 3])
+
+numpy.mean(my_nums)
+```
+
+When importing a package it's common practice to give it a shorter "nickname". For example `np` is the common nickname for `numpy`.
+
+```{python}
+import numpy as np
+
+my_nums = np.array([1, 2, 3])
+
+np.mean(my_nums)
+```
+
+A numpy array can be iterated over in a "vectorized" way (while a list cannot). (More on vectorization later.) For example, suppose we want to square each of the numbers 1, 2, 3. Trying to square a list won't work...
+
+```{python}
+[1, 2, 3] ** 2
+```
+
+But calling `** 2` on a numpy array will square each of the numbers in the array.
+
+```{python}
+np.array([1, 2, 3]) ** 2
+```
+
+If you only need a handful of functions from a library and you want to avoid the extra typing of including the package name/nickname, you can pull those functions in directly
+
+```{python}
+from numpy import array, mean
+
+my_nums = array([1, 2, 3])
+
+mean(my_nums)
+```
+
+## Exercises
+
+For each of the following there might be several ways to do it, so pair and share to compare.
+
+Use Python to compute $\sqrt{400}$.
+
+```{python}
+# your code here
+```
+
+What happens if you try to compute $\sqrt{-400}$ in the same way?
+
+```{python}
+# your code here
+```
+
+Write a function called `my_sqrt` that returns $\sqrt{x}$ if $x\ge 0$ and 0 if $x<0$. (Note: you would probably never need to use such a function.)
+
+```{python}
+# your code here
+```
+
+Evaluate `my_sqrt` for 400 and -400 separately; make sure you display the output for both computations.
+
+```{python}
+# your code here
+```
+
+Write a `for` loop to compute `my_sqrt` for each of the numbers: 0, 1, 2, ..., 10.
+
+```{python}
+# your code here
+```
+
+Without using a for loop, compute `my_sqrt` for each of the numbers: -10, -5, 0, 5, 10
+
+```{python}
+# your code here
+```
+
+Create a Python list of your 5 favorite movies (or TV shows or songs or whatever you want) with the first element your first favorite, and so on.
+
+```{python}
+# your code here
+```
+
+Extract your first favorite from the list
+
+```{python}
+# your code here
+```
+
+Extract your second favorite from the list
+
+```{python}
+# your code here
+```
+
+Extract everything but your first favorite from the list
+
+```{python}
+# your code here
+```
+
